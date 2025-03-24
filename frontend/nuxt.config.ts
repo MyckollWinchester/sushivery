@@ -9,8 +9,12 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxt/scripts',
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/color-mode',
     'shadcn-nuxt'
   ],
+  colorMode: {
+    classSuffix: ''
+  },
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -20,6 +24,7 @@ export default defineNuxtConfig({
      * Directory that the component lives in.
      * @default "./components/ui"
      */
-    componentDir: './components/ui'
+    componentDir: './components/ui',
+    
   }
 })
