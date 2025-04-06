@@ -26,8 +26,13 @@ export const columns: ColumnDef<User>[] = [
           cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('id')),
     },
     {
-        accessorKey: 'provincia',
-        header: 'Provincia',
-        cell: ({ row }) => h('div', {}, row.getValue('provincia')),
+        accessorKey: 'comuna',
+        header: ({ column }) => {
+          return h(Button, {
+            variant: 'ghost',
+            onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+          }, () => ['Comuna', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' })])
+        },
+        cell: ({ row }) => h('div', { class: 'lowercase' }, row.getValue('comuna')),
     }
 ]

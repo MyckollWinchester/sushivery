@@ -1,40 +1,25 @@
-import type { User } from '@/types/user'
+import type { User } from "@/types/user"
 
 export const users: User[] = [
-    {
-        "id": "12.265.334-4",
-        "name": "Juan Pérez",
-        "address": "Av. Siempreviva 742",
-        "comuna": "Springfield",
-        "provincia": "Springfield",
-        "region": "Región de Springfield",
-        "birth": "1980-06-20",
-        "sexo": "Masculino",
-        "email": "juan@example.com",
-        "phone": "+569 1234 5678"
-    },
-    {
-        "id": "11.222.333-4",
-        "name": "María González",
-        "address": "Calle Falsa 123",
-        "comuna": "Springfield",
-        "provincia": "Springfield",
-        "region": "Región de Springfield",
-        "birth": "1985-03-15",
-        "sexo": "Femenino",
-        "email": "maria@example.com",
-        "phone": "+569 8765 4321"
-    },
-    {
-        "id": "10.111.222-3",
-        "name": "Pedro Pérez",
-        "address": "Av. Siempreviva 742",
-        "comuna": "Springfield",
-        "provincia": "Springfield",
-        "region": "Región de Springfield",
-        "birth": "1975-12-10",
-        "sexo": "Masculino",
-        "email": "pedro@gmail.com",
-        "phone": "+569 1111 2222"
-    }
-  ]
+    {"id": "12.114.517-1", "name": "Rosa Cinthia Hidalgo Espinoza", "address": "Eliodoro Yáñez 8773, Tocopilla, Región de Antofagasta", "comuna": "Paiguano", "region": "Región de Arica y Parinacota", "birth": "1978-12-06", "sexo": "Femenino", "email": "constanzaaravena@example.com", "phone": "+56 42 392 4963"},
+    {"id": "12.935.380-4", "name": "Juan Valenzuela Jara", "address": "Manuel Rodríguez 691, Palmilla, Región del Libertador General Bernardo O'Higgins, 6136240", "comuna": "Putaendo", "region": "Región de Ñuble", "birth": "1987-09-06", "sexo": "Femenino", "email": "nunezrichard@example.org", "phone": "+56 55 232 2456"},
+    {"id": "18.907.962-9", "name": "Karen Nicole Domínguez Barraza", "address": "María Sánchez 467, Yerbas Buenas, Región del Maule, 0968030", "comuna": "Tocopilla", "region": "Región de Tarapacá", "birth": "1966-03-31", "sexo": "Masculino", "email": "figueroabenjamin@example.net", "phone": "+56 9 5168 0904"},
+    {"id": "8.123.365-5", "name": "Francisca Araya Mora", "address": "Los Palmitos 331, San Esteban, Región de Valparaíso, 6844020", "comuna": "El Quisco", "region": "Región del Biobío", "birth": "1982-04-18", "sexo": "Masculino", "email": "acortes@example.org", "phone": "+56 9 6811 4595"},
+    {"id": "6.662.218-6", "name": "Jordán Maldonado-Salamanca Olate", "address": "Calle Los Piñones 74, Colbún, Región del Maule", "comuna": "Putre", "region": "Región del Libertador General Bernardo O'Higgins", "birth": "2002-01-24", "sexo": "Masculino", "email": "figueroacristina@example.org", "phone": "+56 2 2307 9860"},
+    {"id": "15.745.422-2", "name": "Yesica Rayén Sepúlveda Sanhueza", "address": "Los Alerces 93 Dpto. 05, Puerto Montt, Región de Los Lagos, 8110720", "comuna": "Curacaví", "region": "Región de Tarapacá", "birth": "1976-05-20", "sexo": "Femenino", "email": "maira10@example.com", "phone": "+56 51 232 7151"},
+    {"id": "22.906.294-7", "name": "Vicente Tito Barrera Ramírez", "address": "Ana Cruces 381, Monte Patria, Región de Coquimbo", "comuna": "Victoria", "region": "Región de Magallanes y de la Antártica Chilena", "birth": "2002-10-29", "sexo": "Femenino", "email": "gallardofelipe@example.net", "phone": "+56 9 6948 1216"},
+    {"id": "23.964.345-0", "name": "Daniela Pérez", "address": "Lorena González 275, Rancagua, Región del Libertador General Bernardo O'Higgins, 9897630", "comuna": "San Fabián", "region": "Región de Los Lagos", "birth": "1955-11-14", "sexo": "Masculino", "email": "gonzalezrosario@example.org", "phone": "+56 800 110 082"},
+    {"id": "13.932.586-9", "name": "Daniel Leoncio Briceño Aguilera", "address": "Emilia Sánchez 186, Yungay, Región de Ñuble, 2060230", "comuna": "Cochamó", "region": "Región del Libertador General Bernardo O'Higgins", "birth": "2000-07-08", "sexo": "Femenino", "email": "giovannilagos@example.net", "phone": "+56 2 2460 2696"},
+    {"id": "18.355.492-9", "name": "Manuel Daniel Rojas Toledo", "address": "Francisco Garrido 472 Of. 734, Tiltil, Región Metropolitana, 2671000", "comuna": "Chañaral", "region": "Región de Magallanes y de la Antártica Chilena", "birth": "1954-05-02", "sexo": "Femenino", "email": "robertonavarro@example.org", "phone": "+56 600 543 011"},
+    {"id": "10.151.870-8", "name": "Carla Maite Bustamante Guerra", "address": "Los Aromos 3776 Dpto. 313, Taltal, Región de Antofagasta", "comuna": "Lonquimay", "region": "Región de Coquimbo", "birth": "1975-10-11", "sexo": "Masculino", "email": "karinagonzalez@example.org", "phone": "+56 57 295 8405"},
+    {"id": "13.797.949-7", "name": "Olga Margarita Acuña Ramírez", "address": "Los Coihues 64 Piso 5, Colina, Región Metropolitana, 3289620", "comuna": "Algarrobo", "region": "Región del Libertador General Bernardo O'Higgins", "birth": "1993-03-02", "sexo": "Masculino", "email": "posses@example.net", "phone": "+56 9 4842 5243"},
+    {"id": "20.979.713-5", "name": "Fresia Daniela Alarcón Vera", "address": "Pasaje Alexis Contreras 6806 Piso 53, Río Hurtado, Región de Coquimbo, 0349790", "comuna": "Toltén", "region": "Región de Los Lagos", "birth": "2003-07-06", "sexo": "Femenino", "email": "onunez@example.com", "phone": "+56 2 3939 6720"},
+    {"id": "20.336.921-1", "name": "Sandra Fernanda Guerra Astudillo", "address": "Manuel Rodríguez 902, El Bosque, Región Metropolitana", "comuna": "Cochrane", "region": "Región de Ñuble", "birth": "1988-02-17", "sexo": "Masculino", "email": "jaramillocesar@example.com", "phone": "+56 2 3134 8041"},
+    {"id": "19.952.554-9", "name": "Rosa María Muñoz Zúñiga", "address": "Av. Carolina Lobos 17, Santo Domingo, Región de Valparaíso, 9503160", "comuna": "Algarrobo", "region": "Región de Atacama", "birth": "1977-07-25", "sexo": "Femenino", "email": "cristobal63@example.net", "phone": "+56 9 2544 7063"},
+    {"id": "3.259.108-1", "name": "Viviana Samantha Viveros Escalona", "address": "Lautaro 2653 Of. 3343, O'Higgins, Región de Aysén del General Carlos Ibáñez del Campo, 2337940", "comuna": "Longaví", "region": "Región de Los Ríos", "birth": "1954-01-02", "sexo": "Masculino", "email": "marcelobriceno@example.com", "phone": "+56 600 926 790"},
+    {"id": "6.672.589-9", "name": "Adriana Valeska Calderón Alarcón", "address": "Calle Patricia Reyes 987, Canela, Región de Coquimbo, 6534320", "comuna": "Los Lagos", "region": "Región del Libertador General Bernardo O'Higgins", "birth": "1989-02-13", "sexo": "Masculino", "email": "dianacarrasco@example.com", "phone": "+56 42 210 5991"},
+    {"id": "20.802.192-1", "name": "Sonia Bahamonde", "address": "Calle Manuel Rodríguez 703 Dpto. 154, San Clemente, Región del Maule", "comuna": "Caldera", "region": "Región de Ñuble", "birth": "1983-05-08", "sexo": "Femenino", "email": "jose53@example.com", "phone": "+56 2 2832 5160"},
+    {"id": "7.909.469-6", "name": "Jaime Mauricio Veas Rojas", "address": "Avenida Christian García 7252, Palena, Región de Los Lagos, 3629720", "comuna": "Curanilahue", "region": "Región de Coquimbo", "birth": "1988-11-17", "sexo": "Masculino", "email": "isabella62@example.org", "phone": "+56 45 386 2411"},
+    {"id": "7.135.372-4", "name": "Sandra Tamara Olivares Cifuentes", "address": "Los Calafates 6366 Piso 3, Puyehue, Región de Los Lagos, 1115580", "comuna": "Isla  de Pascua", "region": "Región de Magallanes y de la Antártica Chilena", "birth": "1951-02-25", "sexo": "Femenino", "email": "utorres@example.org", "phone": "+56 63 230 5462"},
+    {"id": "22.419.516-7", "name": "Carolina Espinoza Lazo", "address": "O'Higgins 4008 Of. 661, Panquehue, Región de Valparaíso", "comuna": "La Cisterna", "region": "Región de Arica y Parinacota", "birth": "1952-07-28", "sexo": "Masculino", "email": "hugocortes@example.net", "phone": "+56 2 3477 0494"},
+]
