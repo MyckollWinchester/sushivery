@@ -28,7 +28,13 @@ import { Button } from '@/components/ui/button'
         </div>
         <div class="flex flex-col items-center py-4">
             <h1 class="text-sm">¿No tienes una cuenta?</h1>
+<<<<<<< Updated upstream
             <Button class="w-40 py-6 rounded-full">Crear una cuenta</Button>
+=======
+            <Nuxt-link to="/register">
+                <Button class="w-40 py-6 rounded-full font-bold" >Crear una cuenta</Button>
+            </Nuxt-link>
+>>>>>>> Stashed changes
         </div>
     </div>
 
