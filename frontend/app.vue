@@ -13,7 +13,7 @@ import '~/assets/css/global.css'
 
     <NuxtPage />
     
-    <h1>zero to hero...</h1>
+    <!-- <h1>zero to hero...</h1> -->
   </div>
 
 </template>
