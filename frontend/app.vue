@@ -41,7 +41,7 @@ watch(colorMode, updateIcon);
         </div>
         <div class="hidden md:flex gap-6">
           <NuxtLink to="/" class="hover:text-fukusuke">Inicio</NuxtLink>
-          <NuxtLink to="/default" class="hover:text-fukusuke">Menú</NuxtLink>
+          <NuxtLink to="/admincarta" class="hover:text-fukusuke">Menú</NuxtLink>
           <NuxtLink to="/adminuser" class="hover:text-fukusuke">Usuarios</NuxtLink>
           <NuxtLink to="/login" class="hover:text-fukusuke">Login</NuxtLink>
         </div>
@@ -50,7 +50,7 @@ watch(colorMode, updateIcon);
 
     <div v-if="isOpen" class="flex flex-col items-start gap-4 p-4 md:hidde">
       <NuxtLink to="/" class="hover:text-fukusuke">Inicio</NuxtLink>
-      <NuxtLink to="/default" class="hover:text-fukusuke">Menú</NuxtLink>
+      <NuxtLink to="/admincarta" class="hover:text-fukusuke">Menú</NuxtLink>
       <NuxtLink to="/adminuser" class="hover:text-fukusuke">Usuarios</NuxtLink>
       <NuxtLink to="/login" class="hover:text-fukusuke">Login</NuxtLink>
     </div>
