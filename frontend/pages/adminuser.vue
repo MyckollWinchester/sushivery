@@ -21,8 +21,8 @@ onMounted(async () => {
 <template>
   <div class="container py-10 mx-auto">
     <DataTable :columns="columns" :data="data" />
+    <Nuxt-link to="/edituser">
+        <Button class="w-40 my-4 py-6 rounded-full font-bold" >Ir a editar</Button>
+    </Nuxt-link>
   </div>
-  <Nuxt-link to="/edituser">
-      <Button class="w-40 py-6 rounded-full font-bold" >Ir a editar</Button>
-  </Nuxt-link>
 </template>

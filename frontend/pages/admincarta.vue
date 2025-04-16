@@ -19,8 +19,9 @@ const editPlate = (id: number) => {
 </script>
 
 <template>
-    <div class="p-4">
-        <h1 class="font-sans text-4xl font-black">Carta activa</h1>
+    <div class="p-4 items-center flex flex-col">
+        
+        <h1 class="w-full max-w-3xl font-sans text-4xl font-black py-2">Carta activa</h1>
 
         <div class="space-y-4">
             <CartaItem
