@@ -51,7 +51,7 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			},
 			// Custom colors
-			fukusuke: '#FF0000'
+			fukusuke: '#CD2032'
 
   		}
   	}

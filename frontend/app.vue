@@ -24,10 +24,10 @@ watch(colorMode, updateIcon);
 <template>
   <div>
     <nav class="flex items-center justify-between p-4">
-      <div class="flex items-center gap-2">
+      <NuxtLink to="/" class="flex items-center gap-2">
         <img src="/images/logo.png" alt="Logo" class="w-8 h-8" draggable="false">
         <div class="text-xl" style="font-family: 'Yuji Mai'">福助</div>
-      </div>
+      </NuxtLink>
       <div class="flex items-center gap-4">
         <div class="flex items-center gap-4">
           <div class="cursor-pointer text-xl hover:text-fukusuke" draggable="false" @click="toggleTheme" @mousedown.prevent>
@@ -56,5 +56,18 @@ watch(colorMode, updateIcon);
     </div>
 
     <NuxtPage />
+
+    <footer ref="pageFooter" class="bg-gray-100 px-4 md:px-16 py-12">
+      <div class="grid md:grid-cols-3 gap-8 text-sm text-gray-700">
+        <div>
+          <h3 class="font-bold mb-2">Contacto</h3>
+          <p>📞 +56 9 1234 5678</p>
+          <p>📧 contacto@sushiplace.cl</p>
+        </div>
+      </div>
+      <p class="mt-8 text-center text-xs text-gray-400">
+        © 2025 Sushi Fukusuke. Todos los derechos reservados.
+      </p>
+    </footer>
   </div>
 </template>

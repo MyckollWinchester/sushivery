@@ -2,12 +2,13 @@
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
+import watonFukusuke from '/images/fukusuke-credentials.png'
 </script>
 
 <template>
     <div class="flex flex-col min-h-screen items-center bg-fukusuke text-white" >
         <div class="text-center">
-            <img src="/images/logo.jpg" alt="Logo" class="rounded-sm w-60 mx-auto my-10" />
+            <img :src="watonFukusuke" alt="Logo" class="rounded-sm w-80 mx-auto my-10" draggable="false">
             <h1 class="font-sans text-4xl font-black">Identifícate</h1>    
         </div>
         <div class="w-full max-w-sm py-4 space-y-4">
