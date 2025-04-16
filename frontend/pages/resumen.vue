@@ -1,8 +1,23 @@
+<script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+definePageMeta({
+  hideNav: false,
+  hideFooter: true
+});
+
+const goBack = () => {
+  router.back()
+}
+</script>
+
 <template>
   <div class="bg-gray-100 flex flex-col">
     <!-- Título de sección -->
     <div class="bg-white px-4 py-3 shadow-sm flex items-center gap-2">
-      <button>
+      <button @click="goBack">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
           <path d="M15 18l-6-6 6-6"/>
         </svg>
@@ -42,15 +57,15 @@
     </div>
 
     <!-- Sticky footer -->
-    <div class="sticky bottom-0 bg-white shadow-[0_-2px_8px_rgba(0,0,0,0.08)] px-4 py-3">
+    <div class="absolute w-full bottom-0 bg-white shadow-[0_-2px_8px_rgba(0,0,0,0.08)] px-4 py-3">
       <div class="flex items-center justify-between">
         <div class="flex flex-col leading-none">
           <span class="text-sm text-gray-500">3 Productos</span>
           <span class="text-xl font-bold">$32.970</span>
         </div>
-        <button class="bg-red-600 w-32 h-12 text-white rounded-md font-semibold text-sm">
-          generar pedido
-        </button>
+        <NuxtLink to="/pedido-generado" class="w-36 h-12 text-white bg-red-600 rounded-full flex items-center justify-center">
+          Generar pedido
+        </NuxtLink>
       </div>
     </div>
   </div>

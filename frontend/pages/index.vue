@@ -24,7 +24,7 @@ import {
                     src="https://placehold.co/256x256"
                     alt="Producto"
                     class="aspect-square w-full object-cover rounded-md"
-                  />
+                  >
                   <div class="p-2">
                     <p class="[font-size:20px] font-bold">
                       Tabla 1 - 60 piezas
@@ -45,7 +45,7 @@ import {
                     src="/images/productos/california-roll.png"
                     alt="Producto"
                     class="aspect-square w-full object-cover rounded-md"
-                  />
+                  >
                   <div class="p-2">
                     <p class="[font-size:16px] font-bold">La Versión Global</p>
                     <p class="[font-size:12px] text-red-600">Se acerca</p>
@@ -90,12 +90,12 @@ import {
           <img
             src="/images/productos/california-roll.png"
             alt="Promoción Sushi"
-            class="w-24 h-24 object-cover rounded-full border border-gray-200"
-          />
+            class="w-24 h-24 object-contain"
+          >
 
           <div class="flex flex-col">
-            <p class="font-bold">60 Piezas</p>
-            <p class="text-sm text-gray-500 leading-none mb-1">$26000</p>
+            <p class="font-bold">California Roll</p>
+            <p class="text-sm text-gray-500 leading-none mb-1">$600 c/u</p>
             <button
               class="mt-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-3 py-1 rounded w-fit"
             >
@@ -127,7 +127,7 @@ import {
             src="/images/productos/tabla-1.webp"
             alt="Promoción Sushi"
             class="w-24 h-24 object-contain"
-          />
+          >
 
           <div class="flex flex-col">
             <p class="font-bold">60 Piezas</p>
@@ -163,11 +163,11 @@ import {
             src="/images/productos/handroll-1.webp"
             alt="Promoción Sushi"
             class="w-24 h-24 object-contain"
-          />
+          >
 
           <div class="flex flex-col">
             <p class="font-bold">Pollo Furay</p>
-            <p class="text-sm text-gray-500 leading-none mb-1">$26000</p>
+            <p class="text-sm text-gray-500 leading-none mb-1">$3490</p>
             <button
               class="mt-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-3 py-1 rounded w-fit"
             >
@@ -199,11 +199,11 @@ import {
             src="/images/productos/bebida-1.webp"
             alt="Promoción Sushi"
             class="w-24 h-24 object-contain"
-          />
+          >
 
           <div class="flex flex-col">
             <p class="font-bold">Banana Milk</p>
-            <p class="text-sm text-gray-500 leading-none mb-1">$26000</p>
+            <p class="text-sm text-gray-500 leading-none mb-1">$1800</p>
             <button
               class="mt-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-3 py-1 rounded w-fit"
             >
@@ -235,11 +235,11 @@ import {
             src="/images/productos/salsa-1.png"
             alt="Promoción Sushi"
             class="w-24 h-24 object-contain"
-          />
+          >
 
           <div class="flex flex-col">
             <p class="font-bold">Salsa de Soya</p>
-            <p class="text-sm text-gray-500 leading-none mb-1">$26000</p>
+            <p class="text-sm text-gray-500 leading-none mb-1">$300</p>
             <button
               class="mt-2 bg-red-500 hover:bg-red-600 text-white text-sm font-medium px-3 py-1 rounded w-fit"
             >
@@ -254,18 +254,15 @@ import {
       class="fixed bottom-0 left-0 w-full bg-white px-4 py-3 z-50 shadow-[0_-2px_10px_rgba(0,0,0,0.1)]"
     >
       <div class="flex justify-between items-center">
-        <!-- Info del carrito -->
         <div class="flex flex-col leading-tight">
           <span class="text-sm text-gray-500">3 Productos</span>
           <span class="text-xl font-bold">$32970</span>
         </div>
 
-        <!-- Botón rojo con contador -->
         <NuxtLink to="/resumen" class="relative">
           <div
-            class="w-32 h-12 text-white bg-red-600 rounded-full flex items-center justify-center"
+            class="w-36 h-12 text-white bg-red-600 rounded-full flex items-center justify-center"
           >
-            <!-- Aquí va el ícono SVG -->
             Ir a pagar
           </div>
         </NuxtLink>
