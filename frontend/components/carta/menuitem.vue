@@ -19,8 +19,8 @@ const handleEdit = () => emits('edit', props.plate.id)
 
 <template>
   <div
-    :class="[{ 'opacity-50': !plate.isActive }, 'flex items-start justify-between gap-4 p-4 border rounded-md bg-white']"
-    class="transition-opacity duration-300"
+    :class="[{ 'opacity-50': !plate.isActive }, 'flex items-start justify-between gap-3 sm:gap-4 p-3 sm:p-5 border rounded-md']"
+    class="transition-opacity duration-300 max-w-4xl"
   >
     <!-- Imagen -->
     <div class="w-16 h-16 bg-gray-200 rounded-md flex-shrink-0">
@@ -40,12 +40,12 @@ const handleEdit = () => emits('edit', props.plate.id)
     </div>
 
     <div class="flex flex-col gap-2">
-      <Button :class="[plate.isActive ? 'bg-red-600' : 'bg-green-500']" class="text-white text-sm w-20" @click="handleToggle">
+      <Button :class="[plate.isActive ? 'bg-red-600' : 'bg-green-500']" class="text-white text-sm w-18 sm:w-20 p-2" @click="handleToggle">
         {{ plate.isActive ? 'Quitar' : 'Agregar' }}
       </Button>
 
       <NuxtLink :to="`/edititem`" class="w-full">
-        <Button class="bg-black text-white text-sm" @click="handleEdit">Editar</Button>
+        <Button class="bg-black text-white text-sm w-18 sm:w-20" @click="handleEdit">Editar</Button>
       </NuxtLink>
 
     </div>

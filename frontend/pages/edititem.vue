@@ -16,13 +16,24 @@ import { useForm } from 'vee-validate'
 import { h } from 'vue'
 import * as z from 'zod'
 
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+
 const formSchema = toTypedSchema(z.object({
   name: z.string().min(2).max(50),
-  description: z.string().min(10).max(200),
+  description: z.string().min(5).max(200),
   price: z.number().positive(),
   oldPrice: z.number().positive().optional(),
   image: z.string().url().optional(),
-  isActive: z.boolean(),
+  isActive: z.enum(['true', 'false']).refine((value) => value !== undefined, {
+    message: "Debe seleccionar un estado válido",
+  }),
 }))
 
 const { isFieldDirty, handleSubmit } = useForm({
@@ -43,7 +54,7 @@ const onSubmit = handleSubmit((values) => {
 <template>
     <div class="flex items-center flex-col min-h-screen">
 
-        <form class="w-full max-w-sm px-2 space-y-3" @submit.prevent="onSubmit">
+        <form class="w-full max-w-xl px-3 space-y-3" @submit.prevent="onSubmit">
             <p class="text-neutral-400 pt-2">Edita los datos del plato aquí y guarda cuando termines</p>
             
             <FormField v-slot="{ componentField }" name="name" :validate-on-blur="!isFieldDirty">
@@ -100,10 +111,17 @@ const onSubmit = handleSubmit((values) => {
                 <FormItem>
                     <FormLabel>Estado</FormLabel>
                     <FormControl>
-                        <select v-bind="componentField" class="w-full border rounded-md p-2">
-                            <option :value="true">Activo</option>
-                            <option :value="false">Inactivo</option>
-                        </select>
+                        <Select v-bind="componentField">
+                            <SelectTrigger>
+                                <SelectValue placeholder="Selecciona el estado" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectGroup>
+                                    <SelectItem :value="'true'">Activo</SelectItem>
+                                    <SelectItem :value="'false'">Inactivo</SelectItem>
+                                </SelectGroup>
+                            </SelectContent>
+                        </Select>
                     </FormControl>
                     <FormMessage />
                 </FormItem>

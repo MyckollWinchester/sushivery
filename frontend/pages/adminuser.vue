@@ -3,8 +3,7 @@ import type { User } from '@/types/user'
 import { onMounted, ref } from 'vue'
 import { columns } from '@/components/usertable/columns'
 import DataTable from '@/components/usertable/data-table.vue'
-
-import { users } from '@/components/usertable/data'
+import { users } from '~/components/usertable/data'
 
 const data = ref<User[]>([])
 
@@ -20,9 +19,11 @@ onMounted(async () => {
 
 <template>
   <div class="container py-10 mx-auto">
-    <DataTable :columns="columns" :data="data" />
+    <h1 class="w-full max-w-3xl font-sans text-4xl font-black py-2 mx-2">Carta activa</h1>
+    
+    <DataTable class="mx-2" :columns="columns" :data="data" />
+    <Nuxt-link to="/edituser">
+        <Button class="w-40 my-4 py-6 mx-2 rounded-full font-bold" >Ir a editar</Button>
+    </Nuxt-link>
   </div>
-  <Nuxt-link to="/edituser">
-      <Button class="w-40 py-6 rounded-full font-bold" >Ir a editar</Button>
-  </Nuxt-link>
 </template>

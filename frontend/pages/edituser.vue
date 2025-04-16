@@ -57,7 +57,7 @@ const onSubmit = handleSubmit((values) => {
 <template>
     <div class="flex items-center flex-col min-h-screen">
 
-        <form class="w-full max-w-sm px-2 space-y-3" @submit.prevent="onSubmit">
+        <form class="w-full max-w-xl px-3 space-y-3" @submit.prevent="onSubmit">
             <p class="text-neutral-400 pt-2">Haz cambios en tu cuenta aqui, guarda cuando termines</p>
             <FormField v-slot="{ componentField }" name="username" :validate-on-blur="!isFieldDirty">
                 <FormItem>

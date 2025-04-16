@@ -7,6 +7,7 @@ export const plates: Plate[] = [
     description: '20 piezas de lorem, 20 piezas de ipsum, 20 piezas de amet y 20 piezas de kanikama.',
     price: 26000,
     oldPrice: 32000,
+    image: 'https://placehold.co/64x64',
     isActive: true
   },
   {
@@ -15,6 +16,7 @@ export const plates: Plate[] = [
     description: '20 piezas de lorem, 10 piezas de ipsum.',
     price: 26000,
     oldPrice: 32000,
+    image: 'https://placehold.co/64x64',
     isActive: true
   },
   {
@@ -23,6 +25,7 @@ export const plates: Plate[] = [
     description: '10 piezas de lorem.',
     price: 26000,
     oldPrice: 32000,
+    image: 'https://placehold.co/64x64',
     isActive: false
   },
   // Más platos...
