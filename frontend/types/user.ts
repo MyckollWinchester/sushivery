@@ -3,7 +3,6 @@ export interface User {
     name: string;
     address: string;
     comuna: string;
-    provincia: string;
     region: string;
     birth: string;
     sexo: string;

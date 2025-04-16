@@ -4,7 +4,7 @@ import { onMounted, ref } from 'vue'
 import { columns } from '@/components/usertable/columns'
 import DataTable from '@/components/usertable/data-table.vue'
 
-import { users } from '@/components/usertable/data'
+import { users } from '~/components/usertable/data'
 
 const data = ref<User[]>([])
 
