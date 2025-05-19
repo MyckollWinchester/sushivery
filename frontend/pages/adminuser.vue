@@ -19,7 +19,7 @@ onMounted(async () => {
 
 <template>
   <div class="container py-10 mx-auto">
-    <h1 class="w-full max-w-3xl font-sans text-4xl font-black py-2 mx-2">Carta activa</h1>
+    <h1 class="w-full max-w-3xl font-sans text-4xl font-black py-2 mx-2">Gestionar Usuarios</h1>
     
     <DataTable class="mx-2" :columns="columns" :data="data" />
     <Nuxt-link to="/edituser">

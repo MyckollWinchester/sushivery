@@ -21,9 +21,9 @@ import {
               <Card class="border-none shadow-none">
                 <CardContent class="flex flex-col p-0">
                   <img
-                    src="https://placehold.co/256x256"
+                    src="/images/productos/tabla-1.webp"
                     alt="Producto"
-                    class="aspect-square w-full object-cover rounded-md"
+                    class="aspect-square w-full object-contain rounded-md"
                   >
                   <div class="p-2">
                     <p class="[font-size:20px] font-bold">
@@ -47,8 +47,8 @@ import {
                     class="aspect-square w-full object-cover rounded-md"
                   >
                   <div class="p-2">
-                    <p class="[font-size:16px] font-bold">La Versión Global</p>
-                    <p class="[font-size:12px] text-red-600">Se acerca</p>
+                    <p class="[font-size:16px] font-bold">California Roll</p>
+                    <p class="[font-size:12px] text-red-600">600  CLP c/u</p>
                   </div>
                 </CardContent>
               </Card>
