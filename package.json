@@ -1,0 +1,17 @@
+{
+  "name": "sushivery",
+  "version": "1.0.0",
+  "description": "Sushi e-commerce webapp for INF301",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MyckollWinchester/sushivery.git"
+  },
+  "keywords": [],
+  "author": "Myckoll W. & Gabriel A.",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/MyckollWinchester/sushivery/issues"
+  },
+  "homepage": "https://github.com/MyckollWinchester/sushivery#readme"
+}

@@ -1,0 +1,27 @@
+{
+  "name": "suhivery-backend",
+  "main": "index.ts",
+  "scripts": {
+    "watch": "tsc --build --watch",
+    "dev": "tsx watch --clear-screen=false --inspect ./src/server.ts"
+  },
+  "author": "Myckoll W. & Gabriel A.",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.15.0",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.27.0",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^5.0.2",
+    "eslint": "^9.27.0",
+    "global": "^4.4.0",
+    "prettier": "^3.5.3",
+    "typescript-eslint": "^8.32.1"
+  }
+}
