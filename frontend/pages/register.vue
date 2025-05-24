@@ -39,19 +39,20 @@ const retroceder = () => {
 
 // Esquema de validación para el registro
 const formSchema = toTypedSchema(z.object({
-  name: z.string().min(2, 'El nombre es requerido'),
   email: z.string().email('Correo inválido'),
+  password: z.string().min(6, 'La contraseña debe tener al menos 6 caracteres'),
+  name: z.string().min(2, 'El nombre es requerido'),
   telefono: z.string().min(7, 'Teléfono requerido'),
   direccion: z.string().optional(),
   info_adicional: z.string().optional(),
 }))
 
-// No es necesario keep-alive ni acceder a values, solo handleSubmit
 const { handleSubmit } = useForm({
   validationSchema: formSchema,
   initialValues: {
-    name: '',
     email: '',
+    password: '',
+    name: '',
     telefono: '',
     direccion: '',
     info_adicional: '',
@@ -62,6 +63,7 @@ const onSubmit = handleSubmit((values) => {
     const payload = {
         name: values.name,
         email: values.email,
+        password: values.password,
         phone: values.telefono,
         main_address: {
             address: values.direccion,
@@ -69,7 +71,7 @@ const onSubmit = handleSubmit((values) => {
         }
     }
     console.log('Enviado:', payload);
-    fetch('/api/users/register', {
+    fetch('http://localhost:5000/api/users/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -87,17 +89,8 @@ const onSubmit = handleSubmit((values) => {
         </div>
 
         <form class="w-full max-w-sm py-4 space-y-4" @submit.prevent="onSubmit">
-            <!-- Cambia v-if por v-show para mantener el estado de los campos -->
+            <!-- Paso 1: Correo y contraseña -->
             <div v-show="pasoActual === 1">
-                <FormField name="name" v-slot="{ componentField }">
-                    <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
-                        <FormLabel>Nombre</FormLabel>
-                        <FormControl>
-                            <Input id="name" type="text" placeholder="Usawa Reisa" class="bg-white text-black" v-bind="componentField"/>
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                </FormField>
                 <FormField name="email" v-slot="{ componentField }">
                     <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
                         <FormLabel>Correo Electrónico</FormLabel>
@@ -107,18 +100,41 @@ const onSubmit = handleSubmit((values) => {
                         <FormMessage />
                     </FormItem>
                 </FormField>
-                <FormField name="telefono" v-slot="{ componentField }">
+                <FormField name="password" v-slot="{ componentField }">
                     <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
-                        <FormLabel>Teléfono</FormLabel>
+                        <FormLabel>Contraseña</FormLabel>
                         <FormControl>
-                            <Input id="number" type="text" placeholder="9 3223 5665" class="bg-white text-black" v-bind="componentField"/>
+                            <Input id="password" type="password" placeholder="Ingrese contraseña" class="bg-white text-black" v-bind="componentField"/>
                         </FormControl>
                         <FormMessage />
                     </FormItem>
                 </FormField>
             </div>
 
+            <!-- Paso 2: Nombre y teléfono -->
             <div v-show="pasoActual === 2">
+                <FormField name="name" v-slot="{ componentField }">
+                    <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
+                        <FormLabel>Nombre</FormLabel>
+                        <FormControl>
+                            <Input id="name" type="text" placeholder="Usawa Reisa" class="bg-white text-black" v-bind="componentField"/>
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                </FormField>
+                <FormField name="telefono" v-slot="{ componentField }">
+                    <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
+                        <FormLabel>Teléfono</FormLabel>
+                        <FormControl>
+                            <Input id="telefono" type="text" placeholder="9 3223 5665" class="bg-white text-black" v-bind="componentField"/>
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                </FormField>
+            </div>
+
+            <!-- Paso 3: Dirección y adicional -->
+            <div v-show="pasoActual === 3">
                 <FormField name="direccion" v-slot="{ componentField }">
                     <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
                         <FormLabel>Dirección</FormLabel>
@@ -130,27 +146,14 @@ const onSubmit = handleSubmit((values) => {
                 </FormField>
                 <FormField name="info_adicional" v-slot="{ componentField }">
                     <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
-                        <FormLabel>Informacion adicional</FormLabel>
+                        <FormLabel>Información adicional</FormLabel>
                         <FormControl>
                             <Input id="info_adicional" type="text" placeholder="Casa 78" class="bg-white text-black" v-bind="componentField"/>
                         </FormControl>
                         <FormMessage />
                     </FormItem>
                 </FormField>
-                <div class="grid w-auto max-w-sm gap-1.5 m-4 h-10"></div>
-            </div>
-
-            <div v-show="pasoActual === 3">
-                <FormField name="region" v-slot="{ componentField }">
-                    <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
-                        <FormLabel>Región</FormLabel>
-                        <FormControl>
-                            <Input id="region" type="text" placeholder="BioBio" class="bg-white text-black" v-bind="componentField"/>
-                        </FormControl>
-                        <FormMessage />
-                    </FormItem>
-                </FormField>
-                <!-- Puedes agregar más campos para el paso 3 aquí si lo necesitas -->
+                <!-- <div class="grid w-auto max-w-sm gap-1.5 m-4 h-10"></div> -->
             </div>
             <a class="m-4"></a>
         </form>
