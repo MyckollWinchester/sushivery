@@ -39,12 +39,12 @@ const retroceder = () => {
 
 // Esquema de validación para el registro
 const formSchema = toTypedSchema(z.object({
-  email: z.string().email('Correo inválido'),
-  password: z.string().min(6, 'La contraseña debe tener al menos 6 caracteres'),
-  name: z.string().min(2, 'El nombre es requerido'),
-  telefono: z.string().min(7, 'Teléfono requerido'),
-  direccion: z.string().optional(),
-  info_adicional: z.string().optional(),
+  email: z.string().email('Correo inválido').max(50, 'El correo es muy largo'),
+  password: z.string().min(6, 'La contraseña debe tener al menos 6 caracteres').max(30, 'La contraseña es muy larga'),
+  name: z.string().min(2, 'El nombre es requerido').max(50, 'El nombre es muy largo'),
+  telefono: z.string().min(7, 'Teléfono requerido').max(20, 'Teléfono inválido'),
+  direccion: z.string().max(100, 'Dirección inválida'),
+  info_adicional: z.string().max(100, 'Información adicional inválida').optional(),
 }))
 
 const { handleSubmit } = useForm({
@@ -184,3 +184,14 @@ const onSubmit = handleSubmit((values) => {
         </div>
     </div>
 </template>
+
+<style scoped>
+/* Cambia el color de los mensajes de error de FormMessage */
+[data-v-app] .form-message, /* si usas alguna clase global */
+.form-message,
+.text-destructive,
+.text-red-500,
+.text-red-600 {
+  color: #fff3b0 !important; /* Ejemplo: amarillo claro, cambia por el color que prefieras */
+}
+</style>
