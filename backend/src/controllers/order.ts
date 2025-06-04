@@ -74,17 +74,19 @@ const getAllOrders = async (req: Request, res: Response): Promise<any> => {
 
 const getOrderById = async (req: Request, res: Response): Promise<any> => {
     const { orderId } = req.params
-    const order = await Order.findById(orderId).populate('products.product_id').populate('payment')
+
+    const order = await Order.findById(orderId)
     if (!order) {
         return res.status(404).send({
             message: 'Orden no encontrada'
         })
     }
     return res.status(200).send({
-        message: 'Orden obtenida exitosamente',
+        message: 'Orden encontrada',
         order
     })
 }
+
 const updateOrder = async (req: Request, res: Response): Promise<any> => {
     const { orderId } = req.params
     let { total_price, obs, state, security_code, order_date, delivered_date, products, payment, shipping_address } = req.body
@@ -124,7 +126,7 @@ const updateOrder = async (req: Request, res: Response): Promise<any> => {
         products,
         payment,
         shipping_address
-    }, { new: true }).populate('products.product_id').populate('payment')
+    }, { new: true }).populate('products.product_id')
     
     if (!updatedOrder) {
         return res.status(404).send({

@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.post('/placeOrder', orderController.createOrder)
 router.post('/getOrders', orderController.getAllOrders)
-router.put('/getOrder', orderController.getOrderById)
+router.get('/:orderId', orderController.getOrderById)
 router.put('/updateOrder/:orderId', orderController.updateOrder)
 router.delete('/deleteOrder/:orderId', orderController.deleteOrder)
 
