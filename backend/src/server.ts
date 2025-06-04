@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import userRoutes from './routes/user'
 import superUserRoutes from './routes/superuser'
+import productRoutes from './routes/product'
 import orderRoutes from './routes/order'
 
 mongoose.connect('mongodb://localhost:27017/sushivery').then(() => {
@@ -30,6 +31,7 @@ app.use(cors(
 
 app.use('/api/users', userRoutes)
 app.use('/api/superusers', superUserRoutes)
+app.use('/api/products', productRoutes)
 app.use('/api/orders', orderRoutes)
 
 app.listen(PORT, () => {
