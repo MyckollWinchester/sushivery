@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose'
-import Product from './product';
+import Product from './product'
 
 const OrderSchema = new Schema({
   total_price: {
@@ -82,19 +82,18 @@ OrderSchema.pre('save', async function (next) {
   if (this.products && Array.isArray(this.products)) {
     for (const item of this.products) {
       if (item.product_id) {
-        const product = await Product.findById(item.product_id);
+        const product = await Product.findById(item.product_id)
         if (product) {
           const price = product.offer_price !== undefined && product.offer_price !== null
             ? product.offer_price
-            : product.reference_price;
-          item.subtotal_price = price * item.quantity;
+            : product.reference_price
+          item.subtotal_price = price * item.quantity
         }
       }
     }
-    this.total_price = this.products.reduce((sum, item) => sum + (item.subtotal_price || 0), 0);
+    this.total_price = this.products.reduce((sum, item) => sum + (item.subtotal_price || 0), 0)
   }
-  next();
-});
-
+  next()
+})
 
 export default model('Order', OrderSchema)

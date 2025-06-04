@@ -19,7 +19,6 @@ interface ShippingAddress {
 }
 
 interface OrderData {
-  total_price?: number
   obs?: string | null
   state?: 'Pendiente' | 'En preparación' | 'En camino' | 'Entregado'
   security_code: string
@@ -32,7 +31,6 @@ interface OrderData {
 
 const validateOrder = (orderData: OrderData) => {
   const {
-    total_price,
     obs,
     state,
     security_code,
@@ -43,10 +41,6 @@ const validateOrder = (orderData: OrderData) => {
     shipping_address
   } = orderData
   const errors: Record<string, string> = {}
-
-  //if (typeof total_price !== 'number' || total_price <= 0) {
-  //  errors.total_price = 'El campo `total_price` debe ser un número positivo.'
-  //}
 
   if (obs && !validator.isLength(obs, { max: 200 })) {
     errors.obs = 'El campo `obs` puede tener un máximo de 200 caracteres.'
@@ -90,14 +84,6 @@ const validateOrder = (orderData: OrderData) => {
         errors[`products[${index}].quantity`] =
           'El campo `quantity` debe ser un número positivo.'
       }
-      //if (
-      //  typeof product.subtotal_price !== 'number' ||
-      //  product.subtotal_price < 0
-      //) 
-      //{
-      //  errors[`products[${index}].subtotal_price`] =
-      //    'El campo `subtotal_price` debe ser un número no negativo.'
-      //}
     })
   }
   if (!Array.isArray(payment) || payment.length === 0) {
