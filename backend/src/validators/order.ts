@@ -3,13 +3,13 @@ import validator from 'validator'
 interface OrderProduct {
   product_id: string
   quantity: number
-  subtotal_price: number
+  subtotal_price?: number
 }
 
 interface OrderPayment {
   payment_method: 'Efectivo' | 'Tarjeta de crédito' | 'Tarjeta de débito'
   payment_date?: Date
-  amount: number
+  amount?: number
   state?: 'Pendiente' | 'Completado' | 'Fallido'
 }
 
@@ -19,7 +19,7 @@ interface ShippingAddress {
 }
 
 interface OrderData {
-  total_price: number
+  total_price?: number
   obs?: string | null
   state?: 'Pendiente' | 'En preparación' | 'En camino' | 'Entregado'
   security_code: string
@@ -44,9 +44,9 @@ const validateOrder = (orderData: OrderData) => {
   } = orderData
   const errors: Record<string, string> = {}
 
-  if (typeof total_price !== 'number' || total_price <= 0) {
-    errors.total_price = 'El campo `total_price` debe ser un número positivo.'
-  }
+  //if (typeof total_price !== 'number' || total_price <= 0) {
+  //  errors.total_price = 'El campo `total_price` debe ser un número positivo.'
+  //}
 
   if (obs && !validator.isLength(obs, { max: 200 })) {
     errors.obs = 'El campo `obs` puede tener un máximo de 200 caracteres.'
@@ -90,13 +90,14 @@ const validateOrder = (orderData: OrderData) => {
         errors[`products[${index}].quantity`] =
           'El campo `quantity` debe ser un número positivo.'
       }
-      if (
-        typeof product.subtotal_price !== 'number' ||
-        product.subtotal_price < 0
-      ) {
-        errors[`products[${index}].subtotal_price`] =
-          'El campo `subtotal_price` debe ser un número no negativo.'
-      }
+      //if (
+      //  typeof product.subtotal_price !== 'number' ||
+      //  product.subtotal_price < 0
+      //) 
+      //{
+      //  errors[`products[${index}].subtotal_price`] =
+      //    'El campo `subtotal_price` debe ser un número no negativo.'
+      //}
     })
   }
   if (!Array.isArray(payment) || payment.length === 0) {
@@ -113,9 +114,9 @@ const validateOrder = (orderData: OrderData) => {
         errors[`payment[${index}].payment_method`] =
           'El campo `payment_method` es requerido y debe ser uno de los siguientes valores: Efectivo, Tarjeta de crédito, Tarjeta de débito.'
       }
-      if (typeof pay.amount !== 'number' || pay.amount <= 0) {
+      if (pay.amount !== undefined && typeof pay.amount !== 'number') {
         errors[`payment[${index}].amount`] =
-          'El campo `amount` debe ser un número positivo.'
+          'El campo `amount` debe ser un número válido si se incluye.'
       }
     })
   }
