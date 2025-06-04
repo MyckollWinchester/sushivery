@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import userRoutes from './routes/user'
+import superUserRoutes from './routes/superuser'
 
 mongoose.connect('mongodb://localhost:27017/sushivery').then(() => {
   console.log('conectado a la base de datos')
@@ -27,6 +28,7 @@ app.use(cors(
 ))
 
 app.use('/api/users', userRoutes)
+app.use('/api/superusers', superUserRoutes)
 
 app.listen(PORT, () => {
   console.log(`servidor corriendo en http://localhost:${PORT}`)
