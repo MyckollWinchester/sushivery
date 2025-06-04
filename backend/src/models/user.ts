@@ -19,6 +19,7 @@ const UserSchema = new Schema({
   },
   addresses: [
     {
+      _id: false,
       address: {
         type: String,
         required: true

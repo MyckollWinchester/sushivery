@@ -1,38 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import User from '../models/user'
-import validator from '../validators/user'
+import SuperUser from '../models/superuser'
+import validator from '../validators/superuser'
 import bcrypt from 'bcrypt'
-import superUserAuth from './superuser'
 
 import { Request, Response } from 'express'
 
 const createUser = async (req: Request, res: Response): Promise<any> => {
-  let { name, email, password, phone } = req.body
-  const { main_address } = req.body
-
-  if (!main_address || typeof main_address !== 'object') {
-    return res.status(400).send({
-      message: 'El campo `main_address` es requerido y debe ser un objeto'
-    })
-  }
-  let { address, additional_information } = main_address
+  let { name, email, password, role } = req.body
 
   name = name?.trim()
   email = email?.trim()
   password = password?.trim()
-  phone = phone?.trim()
-  address = address?.trim()
-  additional_information = additional_information?.trim()
+  role = role?.trim()
 
   const { errors, isValid } = validator.validateRegister({
     name,
     email,
     password,
-    phone,
-    main_address: {
-      address,
-      additional_information
-    }
+    role
   })
 
   if (!isValid) {
@@ -42,7 +27,7 @@ const createUser = async (req: Request, res: Response): Promise<any> => {
     })
   }
 
-  const existingUser = await User.find({ email })
+  const existingUser = await SuperUser.find({ email })
   if (existingUser.length > 0) {
     return res.status(409).send({
       message: 'El correo electrónico ya está en uso'
@@ -51,36 +36,25 @@ const createUser = async (req: Request, res: Response): Promise<any> => {
 
   password = await bcrypt.hash(password, 10)
 
-  const newUser = await User.create({
+  const newSuperUser = new SuperUser({
     name,
     email,
     password,
-    phone,
-    addresses: [
-      {
-        address,
-        additional_information
-      }
-    ]
+    role: role || 'employee'
   })
 
-  newUser.save()
+  await newSuperUser.save()
 
   return res.status(200).send({
     message: 'Registrado exitosamente',
-    user: newUser
+    user: newSuperUser
   })
-}
-
-interface Address {
-  address: string
-  additional_information: string
 }
 
 const getUser = async (req: Request, res: Response): Promise<any> => {
   const { userId } = req.params
 
-  const user = await User.findById(userId)
+  const user = await SuperUser.findById(userId)
   if (!user) {
     return res.status(404).send({
       message: `No existe el usuario con el ID ${userId}`
@@ -99,8 +73,8 @@ const getAllUsers = async (req: Request, res: Response): Promise<any> => {
     const limit = parseInt(req.query.limit as string) || 20
     const skip = (page - 1) * limit
     const [users, total] = await Promise.all([
-      User.find().skip(skip).limit(limit),
-      User.countDocuments()
+      SuperUser.find().skip(skip).limit(limit),
+      SuperUser.countDocuments()
     ])
     return res.status(200).send({
       message: 'Usuarios encontrados',
@@ -119,25 +93,19 @@ const getAllUsers = async (req: Request, res: Response): Promise<any> => {
 
 const updateUser = async (req: Request, res: Response): Promise<any> => {
   const { userId } = req.params
-  let { name, email, new_password, phone } = req.body
-  const { password, addresses } = req.body
+  let { name, email, new_password, role } = req.body
+  const { password } = req.body
 
   name = name?.trim()
   email = email?.trim()
   new_password = new_password?.trim()
-  phone = phone?.trim()
-
-  addresses.forEach((address: Address) => {
-    address.address = address.address?.trim()
-    address.additional_information = address.additional_information?.trim()
-  })
+  role = role?.trim()
 
   const { errors, isValid } = validator.validateUpdate({
     name,
     email,
     new_password,
-    phone,
-    addresses
+    role
   })
 
   if (!isValid) {
@@ -147,7 +115,7 @@ const updateUser = async (req: Request, res: Response): Promise<any> => {
     })
   }
 
-  const user = await User.findById(userId)
+  const user = await SuperUser.findById(userId)
   if (!user) {
     return res.status(404).send({
       message: `No existe el usuario con el ID ${userId}`
@@ -166,9 +134,7 @@ const updateUser = async (req: Request, res: Response): Promise<any> => {
 
   user.name = name || user.name
   user.email = email || user.email
-  user.phone = phone || user.phone
-  user.addresses = addresses || user.addresses
-  user.birth = req.body.birth || user.birth
+  user.role = role || user.role
 
   await user.save()
 
@@ -181,11 +147,7 @@ const updateUser = async (req: Request, res: Response): Promise<any> => {
 const authUser = async (req: Request, res: Response): Promise<any> => {
   const { email, password } = req.body
 
-  if (email.endsWith('@fukusuke.cl')) {
-    return superUserAuth.authUser(req, res)
-  }
-
-  const user = await User.findOne({ email })
+  const user = await SuperUser.findOne({ email })
   if (!user) {
     return res.status(401).send({
       message: 'Credenciales incorrectas'
@@ -209,5 +171,5 @@ export default {
   getUser,
   getAllUsers,
   updateUser,
-  authUser,
+  authUser
 }

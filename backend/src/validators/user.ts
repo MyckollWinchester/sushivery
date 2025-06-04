@@ -65,15 +65,21 @@ interface UpdateData {
 
 const validateUpdate = (updateData: UpdateData) => {
   const { name, email, new_password, phone, addresses } = updateData
+
   const errors: Record<string, string> = {}
+
   if (name && !validator.isLength(name, { min: 2, max: 50 }))
     errors.name = 'El campo `name` debe tener entre 2 y 50 caracteres.'
+
   if (email && !validator.isEmail(email))
     errors.email = 'El campo `email` debe ser un correo electrónico válido.'
+
   if (new_password && !validator.isLength(new_password, { min: 6, max: 30 }))
     errors.new_password = 'El campo `new_password` debe tener entre 6 y 30 caracteres.'
+
   if (phone && !validator.isLength(phone, { max: 15 }))
     errors.phone = 'El campo `phone` debe tener entre 1 y 15 caracteres.'
+
   if (addresses) {
     addresses.forEach((address, index) => {
       if (!address.address)
@@ -85,6 +91,7 @@ const validateUpdate = (updateData: UpdateData) => {
         errors[`addresses[${index}].additional_information`] = 'El campo `additional_information` puede tener un máximo de 100 caracteres.'
     })
   }
+  
   return {
     errors,
     isValid: Object.keys(errors).length === 0,
