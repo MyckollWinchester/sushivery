@@ -59,7 +59,12 @@ const { handleSubmit } = useForm({
   }
 })
 
+const registroMessage = ref('')
+const registroSuccess = ref(false)
+const mostrarAviso = ref(false)
+
 const onSubmit = handleSubmit((values) => {
+    mostrarAviso.value = false
     const payload = {
         name: values.name,
         email: values.email,
@@ -78,21 +83,44 @@ const onSubmit = handleSubmit((values) => {
         },
         body: JSON.stringify(payload),
     })
+    .then(response => response.json().then(data => ({ ok: response.ok, data })))
+    .then(({ ok, data }) => {
+        if (ok) {
+            registroMessage.value = '¡Registro exitoso! Redirigiendo...';
+            registroSuccess.value = true;
+            setTimeout(() => {
+                router.push('/')
+            }, 1500)
+        } else {
+            registroMessage.value = data.message || 'Registro fallido. Verifica los datos.';
+            registroSuccess.value = false;
+        }
+    })
+    .catch(() => {
+        registroMessage.value = 'Error de red o servidor.';
+        registroSuccess.value = false;
+    })
+}, () => {
+    mostrarAviso.value = true
 })
 </script>
 
 <template>
     <div class="flex flex-col min-h-screen items-center  bg-fukusuke text-white" >
-        <div class="text-center">
-            <img src="/images/fukusuke-credentials.png" alt="Logo" class="rounded-sm w-60 mx-auto my-10" />
+        <div class="text-center h-[472px]">
+            <img src="/images/fukusuke-credentials.png" alt="Logo" class="rounded-sm w-80 mx-auto my-10" />
             <h1 class="text-4xl font-black">Regístrate</h1>    
+            <div v-if="registroMessage" :class="registroSuccess ? 'text-green-400' : 'text-orange-200'" class="text-center font-bold mt-2">{{ registroMessage }}</div>
+            <div v-else-if="mostrarAviso" class="text-orange-200 text-center font-bold mt-2">
+              Por favor verifica el formulario
+            </div>
         </div>
 
-        <form class="w-full max-w-sm py-4 space-y-4" @submit.prevent="onSubmit">
+        <form class="w-full max-w-sm py-4 space-y-2" @submit.prevent="onSubmit">
             <!-- Paso 1: Correo y contraseña -->
             <div v-show="pasoActual === 1">
                 <FormField name="email" v-slot="{ componentField }">
-                    <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
+                    <FormItem class="flex flex-col w-auto max-w-sm mx-4 my-2 h-[85px]">
                         <FormLabel>Correo Electrónico</FormLabel>
                         <FormControl>
                             <Input id="email" type="email" placeholder="Ingrese email" class="bg-white text-black" v-bind="componentField"/>
@@ -101,7 +129,7 @@ const onSubmit = handleSubmit((values) => {
                     </FormItem>
                 </FormField>
                 <FormField name="password" v-slot="{ componentField }">
-                    <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
+                    <FormItem class="flex flex-col w-auto max-w-sm mx-4 my-2 h-[85px]">
                         <FormLabel>Contraseña</FormLabel>
                         <FormControl>
                             <Input id="password" type="password" placeholder="Ingrese contraseña" class="bg-white text-black" v-bind="componentField"/>
@@ -114,7 +142,7 @@ const onSubmit = handleSubmit((values) => {
             <!-- Paso 2: Nombre y teléfono -->
             <div v-show="pasoActual === 2">
                 <FormField name="name" v-slot="{ componentField }">
-                    <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
+                    <FormItem class="flex flex-col w-auto max-w-sm mx-4 my-2 h-[85px]">
                         <FormLabel>Nombre</FormLabel>
                         <FormControl>
                             <Input id="name" type="text" placeholder="Usawa Reisa" class="bg-white text-black" v-bind="componentField"/>
@@ -123,7 +151,7 @@ const onSubmit = handleSubmit((values) => {
                     </FormItem>
                 </FormField>
                 <FormField name="telefono" v-slot="{ componentField }">
-                    <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
+                    <FormItem class="flex flex-col w-auto max-w-sm mx-4 my-2 h-[85px]">
                         <FormLabel>Teléfono</FormLabel>
                         <FormControl>
                             <Input id="telefono" type="text" placeholder="9 3223 5665" class="bg-white text-black" v-bind="componentField"/>
@@ -136,7 +164,7 @@ const onSubmit = handleSubmit((values) => {
             <!-- Paso 3: Dirección y adicional -->
             <div v-show="pasoActual === 3">
                 <FormField name="direccion" v-slot="{ componentField }">
-                    <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
+                    <FormItem class="flex flex-col w-auto max-w-sm mx-4 my-2 h-[85px]">
                         <FormLabel>Dirección</FormLabel>
                         <FormControl>
                             <Input id="direccion" type="text" placeholder="Los aromos 123" class="bg-white text-black" v-bind="componentField"/>
@@ -145,7 +173,7 @@ const onSubmit = handleSubmit((values) => {
                     </FormItem>
                 </FormField>
                 <FormField name="info_adicional" v-slot="{ componentField }">
-                    <FormItem class="grid w-auto max-w-sm items-center gap-1.5 m-4">
+                    <FormItem class="flex flex-col w-auto max-w-sm mx-4 my-2 h-[85px]">
                         <FormLabel>Información adicional</FormLabel>
                         <FormControl>
                             <Input id="info_adicional" type="text" placeholder="Casa 78" class="bg-white text-black" v-bind="componentField"/>
