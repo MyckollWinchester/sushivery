@@ -1,0 +1,120 @@
+@startuml Diagrama de Clases
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+
+' Clases
+class Usuario {
+  - _id: ObjectId
+  - nombre: String
+  - email: String
+  - contraseña: String
+  - rol: String
+}
+
+class Cliente extends Usuario {
+  - teléfono: String
+  - género: String
+  - fecha_nacimiento: Date
+  - fecha_registro: Date
+
+  + registrarse()
+}
+
+class Administrador extends Usuario {
+  + gestionar_usuarios()
+}
+
+class EmpleadoCocina extends Usuario {
+  + gestionar_pedidos()
+  + gestionar_platos()
+}
+
+class EmpleadoDespacho extends Usuario {
+  + verificar_código()
+}
+
+class Dirección {
+  - dirección: String
+  - información_adicional: String
+
+  + agregar_dirección()
+  + actualizar_dirección()
+  + eliminar_dirección()
+}
+
+class Orden {
+  - _id: ObjectId
+  - precio_total: Number
+  - observaciones: String
+  - estado: String
+  - código_seguridad: String
+  - fecha_pedido: Date
+  - fecha_entrega: Date
+
+  + calcular_total()
+  + generar_código()
+  + cambiar_estado()
+}
+
+class Producto {
+  - _id: ObjectId
+  - nombre: String
+  - descripción: String
+  - precio_referencia: Number
+  - precio_oferta?: Number
+  - imagen: String
+  - disponible: Boolean
+
+  + agregar_producto()
+  + actualizar_producto()
+  + eliminar_producto()
+}
+
+class HistóricoPrecio {
+  - fecha: Date
+  - monto: Number
+  - oferta: Boolean
+}
+
+class Pago {
+  - _id: ObjectId
+  - monto: Number
+  - método_pago: String
+  - estado: String
+  - fecha_pago: Date
+
+  + procesar_pago()
+}
+
+class ProductoOrden {
+  - cantidad: Number
+  - subtotal: Number
+
+  + actualizar_cantidad()
+  + calcular_subtotal()
+}
+
+class Categoría {
+  - nombre: String
+
+  + incorporar_producto()
+  + sacar_producto()
+}
+
+
+' Relaciones
+'=======================
+Administrador ||--o{ Usuario : gestiona >
+EmpleadoCocina ||--o{ Orden : gestiona >
+EmpleadoCocina ||--o{ Producto : gestiona >
+EmpleadoDespacho ||--o{ Orden : entrega >
+Cliente ||--{ Dirección : tiene >
+Cliente ||--{ Orden : realiza >
+Producto ||--{ HistóricoPrecio : tiene >
+Producto ||--|| ProductoOrden : referencia <
+Orden ||--{ ProductoOrden : contiene >
+Orden ||--|| Dirección : con destino >
+Orden ||--o{ Pago : está asociada >
+Producto }--|| Categoría : pertenece >
+
+@enduml
